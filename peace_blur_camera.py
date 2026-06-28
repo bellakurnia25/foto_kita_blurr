@@ -7,7 +7,7 @@ mp_drawing = mp.solutions.drawing_utils
 
 hands_detector = mp_hands.Hands(
     static_image_mode=False,
-    max_num_hands=2,          # maksimal 2 tangan terdeteksi
+    max_num_hands=2,          
     min_detection_confidence=0.7,
     min_tracking_confidence=0.6,
 )
@@ -29,14 +29,10 @@ FINGER_PIPS = {
 
 
 def is_finger_extended(landmarks, finger_name, handedness_label):
-    """
-    Mengecek apakah suatu jari dalam keadaan lurus/terangkat.
-    Untuk jari selain jempol: jari dianggap lurus jika ujung (tip)
-    lebih tinggi (nilai y lebih kecil) dibanding titik PIP-nya.
-    """
+  
     tip_y = landmarks[FINGER_TIPS[finger_name]].y
     pip_y = landmarks[FINGER_PIPS[finger_name]].y
-    return tip_y < pip_y  # y lebih kecil = lebih ke atas di gambar
+    return tip_y < pip_y  
 
 
 def is_peace_sign(landmarks, handedness_label):
@@ -70,8 +66,7 @@ def main():
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         results = hands_detector.process(rgb_frame)
 
-        peace_count = 0  # menghitung berapa tangan yang membentuk peace sign
-
+        peace_count = 0  
         if results.multi_hand_landmarks:
             for idx, hand_landmarks in enumerate(results.multi_hand_landmarks):
                 handedness_label = "Unknown"

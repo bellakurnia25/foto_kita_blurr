@@ -1,0 +1,1 @@
+# foto_kita_blurr

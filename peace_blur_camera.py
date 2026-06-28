@@ -1,9 +1,7 @@
 import cv2
 import mediapipe as mp
 
-# ----------------------------------------------------------------------
-# Inisialisasi MediaPipe Hands
-# ----------------------------------------------------------------------
+
 mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
 
